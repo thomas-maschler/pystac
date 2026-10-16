@@ -573,6 +573,9 @@ class Collection(Catalog, Assets):
 
     def _sync_bands(self) -> None:
         self._band_cache.sync(self.extra_fields)
+        if self._item_assets is not None:
+            for item_asset in self._item_assets.values():
+                item_asset._sync_bands()
 
     def add_item(
         self,
